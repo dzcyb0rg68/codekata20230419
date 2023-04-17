@@ -1,0 +1,19 @@
+<div class="m-5">
+  Continent:
+  <select class="form-select" [(ngModel)]="selectedContinent" name="continent">
+    <option value="">- Select a Continent -</option>
+    <option *ngFor="let item of continents" [value]="item.continent">
+      {{ item.continent }}
+    </option>
+  </select>
+</div>
+<div class="m-5">
+  <select>
+    <option>Select Option 2</option>
+    <option>Option 1</option>
+    <option>Option 2</option>
+  </select>
+</div>
+<div class="m-5">
+  <button class="btn btn-dark" routerLink="/">Back to Main</button>
+</div>
