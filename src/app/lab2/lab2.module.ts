@@ -10,7 +10,7 @@ import { ButtonRendererComponent } from './button-renderer.component';
 const routes: Routes = [{ path: 'lab2', component: Lab2Component }];
 
 @NgModule({
-  declarations: [Lab2Component],
+  declarations: [Lab2Component, ButtonRendererComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
