@@ -1,13 +1,10 @@
-<div>
-  <select>
-    <option>Select Option 1</option>
-    <option>Option 1</option>
-    <option>Option 2</option>
-  </select>
-  <select>
-    <option>Select Option 2</option>
-    <option>Option 1</option>
-    <option>Option 2</option>
-  </select>
-  <button routerLink="/">Back to Main</button>
+<ag-grid-angular
+  class="ag-theme-balham"
+  [rowData]="tableData"
+  [columnDefs]="columnDefs"
+  [frameworkComponents]="frameworkComponents"
+  style="width: 100%; height: 500px;"
+></ag-grid-angular>
+<div class="m-5">
+  <button class="btn btn-dark" routerLink="/">Back to Main</button>
 </div>

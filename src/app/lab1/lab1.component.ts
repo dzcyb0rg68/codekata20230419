@@ -43,7 +43,8 @@ export class Lab1Component implements OnInit {
       { continentID: 11, continentName: 'Europe' },
     ].filter(
       (continent, index, self) =>
-        index === self.findIndex((c) => c.continentName === continent.continentName)
+        index ===
+        self.findIndex((c) => c.continentName === continent.continentName)
     );
   }
 
