@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PopupEditorComponent } from './popup-editor/popup-editor.component';
 import { ButtonRendererComponent } from './button-renderer.component';
 import { GridOptions } from 'ag-grid-community';
@@ -20,6 +20,7 @@ export class Lab2Component {
         onClick: this.openPopupEditor.bind(this),
         label: 'Edit',
       },
+      width: 80,
     },
   ];
   gridOptions: GridOptions = {
@@ -85,9 +86,24 @@ export class Lab2Component {
 
   constructor(private dialog: MatDialog) {}
 
-  openPopupEditor(params: any) {
-    this.dialog.open(PopupEditorComponent, {
-      data: params.data,
+  openPopupEditor(data: { item: string; sequence: string }) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = data;
+    dialogConfig.autoFocus = true;
+    dialogConfig.panelClass = 'custom-dialog';
+
+    // Pass dialogConfig as the only argument
+    const dialogRef = this.dialog.open(PopupEditorComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.tableData.findIndex(
+          (row) => row.item === result.item
+        );
+        if (index > -1) {
+          this.tableData[index] = result;
+        }
+      }
     });
   }
 }

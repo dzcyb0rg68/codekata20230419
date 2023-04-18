@@ -1,4 +1,15 @@
 <div>
-  <h3>{{ data.item }}</h3>
-  <p>{{ data.sequence }}</p>
+  <div>
+    <label for="item">Item:</label>
+    <input [(ngModel)]="data.item" type="text" id="item" />
+  </div>
+  <div>
+    <label>Sequence:</label>
+    <div *ngFor="let seq of sequences">
+      <input [(ngModel)]="seq.checked" type="checkbox" [value]="seq.value" />
+      {{ seq.value }}
+    </div>
+  </div>
+  <button (click)="save()">Save</button>
+  <button (click)="cancel()">Cancel</button>
 </div>

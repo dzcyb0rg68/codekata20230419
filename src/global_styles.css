@@ -1,1 +1,11 @@
 /* Add application styles & imports to this file! */
+.custom-dialog .mat-dialog-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the dialog is above other elements on the page */
+.cdk-overlay-container {
+  z-index: 1000;
+}
