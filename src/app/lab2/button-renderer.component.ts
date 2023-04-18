@@ -11,7 +11,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
     >
       <i class="fas fa-pen"></i>
     </button>
-  `
+  `,
 })
 export class ButtonRendererComponent implements ICellRendererAngularComp {
   private params: any;
