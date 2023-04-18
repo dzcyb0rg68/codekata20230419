@@ -17,7 +17,7 @@ export class Lab2Component {
       headerName: 'Operation',
       cellRenderer: 'buttonRenderer',
       cellRendererParams: {
-        onClick: this.openPopupEditor.bind(this),
+        onClick: (rowData: any) => this.openPopupEditor(rowData),
         label: 'Edit',
       },
       width: 80,
@@ -88,20 +88,15 @@ export class Lab2Component {
     this.columnDefs.forEach((columnDef) => {
       allColumnIds.push(columnDef.field || columnDef.headerName);
     });
-    this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
   }
 
-  openPopupEditor(data: {
-    item: string;
-    sequence: string;
-    trigger: ElementRef;
-  }) {
+  openPopupEditor(rowData: any) {
+    console.log(rowData);
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = data;
+    dialogConfig.data = rowData;
     dialogConfig.width = 'auto';
     dialogConfig.height = 'auto';
     dialogConfig.autoFocus = false;
-    dialogConfig.panelClass = 'custom-dialog';
 
     // Pass dialogConfig as the only argument
     const dialogRef = this.dialog.open(PopupEditorComponent, dialogConfig);

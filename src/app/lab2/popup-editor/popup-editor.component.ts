@@ -12,30 +12,17 @@ import {
 })
 export class PopupEditorComponent implements OnInit {
   sequences: { value: string; checked: boolean }[] = [];
-  private readonly dialogRef: MatDialogRef<PopupEditorComponent>;
-  private readonly triggerElementRef: ElementRef;
   constructor(
-    dialogRef: MatDialogRef<PopupEditorComponent>,
+    public dialogRef: MatDialogRef<PopupEditorComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { item: string; sequence: string; trigger: ElementRef }
-  ) {
-    this.triggerElementRef = data.trigger;
-    this.dialogRef = dialogRef;
-  }
+    public data: { item: string; sequence: string }
+  ) {}
 
   ngOnInit(): void {
-    const matDialogConfig: MatDialogConfig = new MatDialogConfig();
-    const rect = this.triggerElementRef.nativeElement.getBoundingClientRect();
-    matDialogConfig.position = {
-      left: `${rect.left}px`,
-      top: `${rect.bottom - 100}px`,
-    };
-    this.dialogRef.updatePosition(matDialogConfig.position);
     this.sequences = this.data.sequence.split(',').map((seq) => ({
       value: seq,
       checked: true,
     }));
-    console.log('rect.left', rect.left);
   }
 
   save() {
