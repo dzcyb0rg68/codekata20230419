@@ -89,7 +89,9 @@ export class Lab2Component {
   openPopupEditor(data: { item: string; sequence: string }) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = data;
-    dialogConfig.autoFocus = true;
+    dialogConfig.width = 'auto';
+    dialogConfig.height = 'auto';
+    dialogConfig.autoFocus = false;
     dialogConfig.panelClass = 'custom-dialog';
 
     // Pass dialogConfig as the only argument
