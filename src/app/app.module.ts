@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { Lab1Module } from './lab1/lab1.module';
 import { Lab2Module } from './lab2/lab2.module';
 import { MainComponent } from './main/main.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     Lab1Module,
     Lab2Module,
+    AgGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -12,6 +12,7 @@ import {
 })
 export class PopupEditorComponent implements OnInit {
   sequences: { value: string; checked: boolean }[] = [];
+  listOfSeq: string[] = [];
   constructor(
     public dialogRef: MatDialogRef<PopupEditorComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -19,10 +20,27 @@ export class PopupEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sequences = this.data.sequence.split(',').map((seq) => ({
-      value: seq,
-      checked: true,
-    }));
+    if (this.data.item != '') {
+      for (let i = 1; i < 6; i++) {
+        let seq = '';
+        seq = this.data.item + '-0' + i;
+        this.listOfSeq.push(seq);
+      }
+    }
+
+    this.listOfSeq.forEach((x) => {
+      if (this.data.sequence.includes(x)) {
+        this.sequences.push({
+          value: x,
+          checked: true,
+        });
+      } else {
+        this.sequences.push({
+          value: x,
+          checked: false,
+        });
+      }
+    });
   }
 
   save() {

@@ -28,7 +28,7 @@ export class Lab1Component implements OnInit {
     this.getCountryData();
   }
 
-  getContinentData(): void {
+  getContinentData() {
     this.allContinents = [
       { continentID: 1, continentName: 'Africa' },
       { continentID: 2, continentName: 'North America' },
@@ -48,7 +48,7 @@ export class Lab1Component implements OnInit {
     );
   }
 
-  getCountryData(): void {
+  getCountryData() {
     this.allCountries = [
       { continentID: 1, countryID: 1, countryName: 'Nigeria' },
       { continentID: 1, countryID: 2, countryName: 'Egypt' },
@@ -72,7 +72,7 @@ export class Lab1Component implements OnInit {
     this.filteredCountryOptions = this.allCountries;
   }
 
-  updateCountries(): void {
+  updateCountries() {
     // your challenge starts here!
     this.filteredCountryOptions = this.allCountries.filter(
       (c) => c.continentID == this.selectedContinent
