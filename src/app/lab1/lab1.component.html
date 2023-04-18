@@ -1,17 +1,30 @@
 <div class="m-5">
   Continent:
-  <select class="form-select" [(ngModel)]="selectedContinent" name="continent">
+  <select
+    class="form-select"
+    [(ngModel)]="selectedContinent"
+    (change)="updateCountries()"
+    name="continent"
+  >
     <option value="">- Select a Continent -</option>
-    <option *ngFor="let item of continents" [value]="item.continent">
-      {{ item.continent }}
+    <option
+      *ngFor="let continent of allContinents"
+      [value]="continent.continentID"
+    >
+      {{ continent.continentName }}
     </option>
   </select>
 </div>
 <div class="m-5">
-  <select>
-    <option>Select Option 2</option>
-    <option>Option 1</option>
-    <option>Option 2</option>
+  Country:
+  <select class="form-select" [(ngModel)]="selectedCountry" name="country">
+    <option value="">- Select a Country -</option>
+    <option
+      *ngFor="let country of filteredCountryOptions"
+      [value]="country.countryID"
+    >
+      {{ country.countryName }}
+    </option>
   </select>
 </div>
 <div class="m-5">
