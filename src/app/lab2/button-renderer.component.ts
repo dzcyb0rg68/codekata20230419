@@ -9,7 +9,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
       class="btn btn-primary"
       (click)="onClick($event)"
     >
-      <i class="fas fa-pen"></i>
+      <i class="fas fa-pen">Edit</i>
     </button>
   `,
 })

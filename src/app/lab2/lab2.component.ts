@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupEditorComponent } from './popup-editor/popup-editor.component';
 import { ButtonRendererComponent } from './button-renderer.component';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   selector: 'app-lab2',
@@ -10,8 +11,8 @@ import { ButtonRendererComponent } from './button-renderer.component';
 })
 export class Lab2Component {
   columnDefs = [
-    { field: 'item', headerName: 'Item' },
-    { field: 'sequence', headerName: 'Sequence' },
+    { field: 'item', headerName: 'Item', width: 100 },
+    { field: 'sequence', headerName: 'Sequence', width: 400 },
     {
       headerName: 'Operation',
       cellRenderer: 'buttonRenderer',
@@ -21,7 +22,20 @@ export class Lab2Component {
       },
     },
   ];
-
+  gridOptions: GridOptions = {
+    rowHeight: 40,
+  };
+  onGridReady(params: any) {
+    this.gridOptions = params.api;
+    this.autoSizeColumns();
+  }
+  autoSizeColumns() {
+    const allColumnIds: string[] = [];
+    this.columnDefs.forEach((columnDef) => {
+      allColumnIds.push(columnDef.field || columnDef.headerName);
+    });
+    this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
+  }
   frameworkComponents = {
     buttonRenderer: ButtonRendererComponent,
   };
