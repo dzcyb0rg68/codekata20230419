@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PopupEditorComponent } from './popup-editor/popup-editor.component';
 import { ButtonRendererComponent } from './button-renderer.component';
@@ -23,20 +23,11 @@ export class Lab2Component {
       width: 80,
     },
   ];
+
   gridOptions: GridOptions = {
     rowHeight: 40,
   };
-  onGridReady(params: any) {
-    this.gridOptions = params.api;
-    this.autoSizeColumns();
-  }
-  autoSizeColumns() {
-    const allColumnIds: string[] = [];
-    this.columnDefs.forEach((columnDef) => {
-      allColumnIds.push(columnDef.field || columnDef.headerName);
-    });
-    this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
-  }
+
   frameworkComponents = {
     buttonRenderer: ButtonRendererComponent,
   };
@@ -85,8 +76,26 @@ export class Lab2Component {
   ];
 
   constructor(private dialog: MatDialog) {}
+  ngOnInit(): void {}
 
-  openPopupEditor(data: { item: string; sequence: string }) {
+  onGridReady(params: any) {
+    this.gridOptions = params.api;
+    this.autoSizeColumns();
+  }
+
+  autoSizeColumns() {
+    const allColumnIds: string[] = [];
+    this.columnDefs.forEach((columnDef) => {
+      allColumnIds.push(columnDef.field || columnDef.headerName);
+    });
+    this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
+  }
+
+  openPopupEditor(data: {
+    item: string;
+    sequence: string;
+    trigger: ElementRef;
+  }) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = data;
     dialogConfig.width = 'auto';
