@@ -1,5 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { GridOptions, ColDef } from 'ag-grid-community';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ColDef } from 'ag-grid-community';
+
+interface ContinentData {
+  continentID: number;
+  continentName: string;
+}
+
+interface CountryData {
+  continentID: number;
+  countryID: number;
+  countryName: string;
+  population: number;
+}
+
+interface ContinentCountryData {
+  continentID: number;
+  continentName: string;
+  countryID: number;
+  countryName: string;
+  population: number;
+}
 
 @Component({
   selector: 'app-lab3',
@@ -7,13 +27,8 @@ import { GridOptions, ColDef } from 'ag-grid-community';
   styleUrls: ['./lab3.component.css'],
 })
 export class Lab3Component implements OnInit {
-  tableData: {
-    continentID: number;
-    continentName: string;
-    countryID: number;
-    countryName: string;
-    population: number;
-  }[] = [];
+  tableData: ContinentCountryData[] = [];
+
   columnDefs: ColDef[] = [
     { field: 'continentName', headerName: 'Continent Name' },
     { field: 'countryName', headerName: 'Country Name' },
@@ -33,142 +48,55 @@ export class Lab3Component implements OnInit {
     minWidth: 150,
   };
 
-  constructor() {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getTableData();
-    this.calculateAveragePopulation();
   }
 
   getTableData() {
-    this.tableData = [
-      {
-        continentID: 1,
-        continentName: 'Africa',
-        countryID: 1,
-        countryName: 'Nigeria',
-        population: 200000000,
-      },
-      {
-        continentID: 1,
-        continentName: 'Africa',
-        countryID: 2,
-        countryName: 'Egypt',
-        population: 100000000,
-      },
-      {
-        continentID: 1,
-        continentName: 'Africa',
-        countryID: 3,
-        countryName: 'South Africa',
-        population: 50000000,
-      },
-      {
-        continentID: 2,
-        continentName: 'North America',
-        countryID: 1,
-        countryName: 'United States',
-        population: 330000000,
-      },
-      {
-        continentID: 2,
-        continentName: 'North America',
-        countryID: 2,
-        countryName: 'Canada',
-        population: 38000000,
-      },
-      {
-        continentID: 2,
-        continentName: 'North America',
-        countryID: 3,
-        countryName: 'Mexico',
-        population: 120000000,
-      },
-      {
-        continentID: 3,
-        continentName: 'South America',
-        countryID: 1,
-        countryName: 'Brazil',
-        population: 200000000,
-      },
-      {
-        continentID: 3,
-        continentName: 'South America',
-        countryID: 2,
-        countryName: 'Argentina',
-        population: 83000000,
-      },
-      {
-        continentID: 3,
-        continentName: 'South America',
-        countryID: 3,
-        countryName: 'Colombia',
-        population: 67000000,
-      },
-      {
-        continentID: 4,
-        continentName: 'Asia',
-        countryID: 1,
-        countryName: 'China',
-        population: 1400000000,
-      },
-      {
-        continentID: 4,
-        continentName: 'Asia',
-        countryID: 2,
-        countryName: 'Singapore',
-        population: 5000000,
-      },
-      {
-        continentID: 4,
-        continentName: 'Asia',
-        countryID: 3,
-        countryName: 'Japan',
-        population: 126000000,
-      },
-      {
-        continentID: 5,
-        continentName: 'Australia',
-        countryID: 1,
-        countryName: 'Australia',
-        population: 25000000,
-      },
-      {
-        continentID: 5,
-        continentName: 'Australia',
-        countryID: 2,
-        countryName: 'New Zealand',
-        population: 5000000,
-      },
-      {
-        continentID: 5,
-        continentName: 'Australia',
-        countryID: 3,
-        countryName: 'Papua New Guinea',
-        population: 9000000,
-      },
-      {
-        continentID: 7,
-        continentName: 'Europe',
-        countryID: 1,
-        countryName: 'Slovakia',
-        population: 6000000,
-      },
-      {
-        continentID: 7,
-        continentName: 'Europe',
-        countryID: 2,
-        countryName: 'Germany',
-        population: 68000000,
-      },
-      {
-        continentID: 7,
-        continentName: 'Europe',
-        countryID: 3,
-        countryName: 'United Kingdom',
-        population: 66000000,
-      },
+    const continentData: ContinentData[] = [
+      { continentID: 1, continentName: 'Africa' },
+      { continentID: 2, continentName: 'North America' },
+      { continentID: 3, continentName: 'South America' },
+      { continentID: 4, continentName: 'Asia' },
+      { continentID: 5, continentName: 'Australia' },
+      { continentID: 6, continentName: 'Antarctica' },
+      { continentID: 7, continentName: 'Europe' },
     ];
+
+    const countryData: CountryData[] = [
+      { continentID: 1, countryID: 1, countryName: 'Nigeria', population: 200000000 },
+      { continentID: 1, countryID: 2, countryName: 'Egypt', population: 100000000 },
+      { continentID: 1, countryID: 3, countryName: 'South Africa', population: 50000000 },
+      { continentID: 2, countryID: 1, countryName: 'United States', population: 330000000 },
+      { continentID: 2, countryID: 2, countryName: 'Canada', population: 38000000 },
+      { continentID: 2, countryID: 3, countryName: 'Mexico', population: 120000000 },
+      { continentID: 3, countryID: 1, countryName: 'Brazil', population: 200000000 },
+      { continentID: 3, countryID: 2, countryName: 'Argentina', population: 83000000 },
+      { continentID: 3, countryID: 3, countryName: 'Colombia', population: 67000000 },
+      { continentID: 4, countryID: 1, countryName: 'China', population: 1400000000 },
+      { continentID: 4, countryID: 2, countryName: 'Singapore', population: 5000000 },
+      { continentID: 4, countryID: 3, countryName: 'Japan', population: 126000000 },
+      { continentID: 5, countryID: 1, countryName: 'Australia', population: 25000000 },
+      { continentID: 5, countryID: 2, countryName: 'New Zealand', population: 5000000 },
+      { continentID: 5, countryID: 3, countryName: 'Papua New Guinea', population: 9000000 },
+      { continentID: 7, countryID: 1, countryName: 'Slovakia', population: 6000000 },
+      { continentID: 7, countryID: 2, countryName: 'Germany', population: 68000000 },
+      { continentID: 7, countryID: 3, countryName: 'United Kingdom', population: 66000000 },
+    ];
+    
+    // Challenge: join continentData and countryData to tableData: ContinentCountryData[]
+    this.tableData = countryData.map((country) => {
+      const continent = continentData.find((continent) => continent.continentID == country.continentID);
+      return {
+        continentID: country.continentID,
+        continentName: continent.continentName,
+        countryID: country.countryID,
+        countryName: country.countryName,
+        population: country.population,
+      }
+    });
   }
 
   calculateAveragePopulation() {
@@ -183,6 +111,8 @@ export class Lab3Component implements OnInit {
       aggregatedData[data.continentName].count += 1;
     });
 
+    this.avgTableData = [];
+
     for (const continentName in aggregatedData) {
       this.avgTableData.push({
         continentName,
@@ -191,5 +121,8 @@ export class Lab3Component implements OnInit {
           aggregatedData[continentName].count,
       });
     }
+
+    // Trigger change detection to update the aggregated table
+    this.changeDetector.detectChanges();
   }
 }
