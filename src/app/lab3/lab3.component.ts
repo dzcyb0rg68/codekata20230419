@@ -33,12 +33,11 @@ export class Lab3Component implements OnInit {
     minWidth: 150,
   };
 
-  constructor() {
-    this.calculateAveragePopulation();
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.getTableData();
+    this.calculateAveragePopulation();
   }
 
   getTableData() {
