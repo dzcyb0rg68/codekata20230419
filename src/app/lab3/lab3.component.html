@@ -1,0 +1,24 @@
+<div class="lab3">
+  <div class="ag-theme-balham" style="height: 320px; width: 100%;">
+    <ag-grid-angular
+      class="ag-grid"
+      [rowData]="tableData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+    ></ag-grid-angular>
+  </div>
+  <div
+    class="ag-theme-balham"
+    style="height: 320px; width: 100%; margin-top: 16px;"
+  >
+    <ag-grid-angular
+      class="ag-grid"
+      [rowData]="avgTableData"
+      [columnDefs]="avgColumnDefs"
+      [defaultColDef]="defaultColDef"
+    ></ag-grid-angular>
+  </div>
+</div>
+<div class="m-5">
+  <button class="btn btn-dark" routerLink="/">Back to Main</button>
+</div>
