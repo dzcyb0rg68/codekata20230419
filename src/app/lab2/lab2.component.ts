@@ -3,7 +3,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PopupEditorComponent } from './popup-editor/popup-editor.component';
 import { ButtonRendererComponent } from './button-renderer.component';
 import { GridOptions } from 'ag-grid-community';
-import { AgGridAngular } from 'ag-grid-angular';
 
 @Component({
   selector: 'app-lab2',
@@ -71,6 +70,8 @@ export class Lab2Component {
   }
 
   openPopupEditor(rowData: any) {
+    console.log('Data sent to PopupEditorComponent: ', rowData.data);
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = rowData.data;
     dialogConfig.width = 'auto';
@@ -78,7 +79,7 @@ export class Lab2Component {
     dialogConfig.position = { left: '100px', top: '0px' };
     dialogConfig.autoFocus = false;
 
-    // Pass dialogConfig as the only argument
+    // Open the dialog (popup window) and pass the data there
     const dialogRef = this.dialog.open(PopupEditorComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {

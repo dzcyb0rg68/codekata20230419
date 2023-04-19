@@ -15,11 +15,13 @@ export class PopupEditorComponent implements OnInit {
   listOfSeq: string[] = [];
   constructor(
     public dialogRef: MatDialogRef<PopupEditorComponent>,
-    @Inject(MAT_DIALOG_DATA)
-    public data: { item: string; sequence: string }
+    @Inject(MAT_DIALOG_DATA) public data: { item: string; sequence: string }
   ) {}
 
   ngOnInit(): void {
+    // console.log('Data recieved from Lab2Component: ', this.data);
+
+    // prepare the check box list
     if (this.data.item != '') {
       for (let i = 1; i < 6; i++) {
         let seq = '';
@@ -27,7 +29,6 @@ export class PopupEditorComponent implements OnInit {
         this.listOfSeq.push(seq);
       }
     }
-
     this.listOfSeq.forEach((x) => {
       if (this.data.sequence.includes(x)) {
         this.sequences.push({
@@ -41,14 +42,30 @@ export class PopupEditorComponent implements OnInit {
         });
       }
     });
+
+    // console.log('Data after pareparation: ', this.sequences);
+
+    // this is what sequences would look like
+    // [
+    //   {value: "12345K-01", checked: true},
+    //   {value: "12345K-02", checked: true},
+    //   {value: "12345K-03", checked: true},
+    //   {value: "12345K-04", checked: false},
+    //   {value: "12345K-05", checked: false,
+    // ];
   }
 
   save() {
-    // Convert the sequences array back into a string
-    const sequenceString = this.sequences
+    // What we want to send back to the Lab2Component after editing:
+    // {item: "12345K", sequence: "12345K-01,12345K-02"}
+
+    // Challenge: Convert the sequences array back into a string
+    // hint: use filter(), map(), and join() methods
+    const sequenceString: string = this.sequences
       .filter((seq) => seq.checked)
       .map((seq) => seq.value)
       .join(',');
+
     this.dialogRef.close({ item: this.data.item, sequence: sequenceString });
   }
 

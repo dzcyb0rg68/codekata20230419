@@ -73,6 +73,8 @@ export class Lab1Component implements OnInit {
   }
 
   updateCountries() {
+    console.log('selected continent ID: ', this.selectedContinent);
+
     // your challenge starts here!
     this.filteredCountryOptions = this.allCountries.filter(
       (c) => c.continentID == this.selectedContinent
