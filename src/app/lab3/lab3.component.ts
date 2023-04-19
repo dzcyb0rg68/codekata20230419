@@ -95,7 +95,7 @@ export class Lab3Component implements OnInit {
         countryID: country.countryID,
         countryName: country.countryName,
         population: country.population,
-      }
+      };
     });
   }
 
