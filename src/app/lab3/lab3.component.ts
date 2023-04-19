@@ -121,7 +121,7 @@ export class Lab3Component implements OnInit {
     }
 
     // Challenge 2: sort the result by average population in descending order
-    this.avgTableData = this.avgTableData.sort(
+    this.avgTableData.sort(
       (a, b) => b.averagePopulation - a.averagePopulation
     );
 
