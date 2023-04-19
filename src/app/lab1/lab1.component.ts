@@ -37,15 +37,7 @@ export class Lab1Component implements OnInit {
       { continentID: 5, continentName: 'Australia' },
       { continentID: 6, continentName: 'Antarctica' },
       { continentID: 7, continentName: 'Europe' },
-      { continentID: 8, continentName: 'Europe' },
-      { continentID: 9, continentName: 'Europe' },
-      { continentID: 10, continentName: 'Europe' },
-      { continentID: 11, continentName: 'Europe' },
-    ].filter(
-      (continent, index, self) =>
-        index ===
-        self.findIndex((c) => c.continentName === continent.continentName)
-    );
+    ];
   }
 
   getCountryData() {
@@ -75,9 +67,8 @@ export class Lab1Component implements OnInit {
   updateCountries() {
     console.log('selected continent ID: ', this.selectedContinent);
 
-    // your challenge starts here!
-    this.filteredCountryOptions = this.allCountries.filter(
-      (c) => c.continentID == this.selectedContinent
-    );
+    // Your first challenge: filter the allCountries so it contains only the selectedContinent
+
+    // Your second challenge: reset the selectedCountry
   }
 }

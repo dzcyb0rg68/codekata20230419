@@ -60,11 +60,8 @@ export class PopupEditorComponent implements OnInit {
     // {item: "12345K", sequence: "12345K-01,12345K-02"}
 
     // Challenge: Convert the sequences array back into a string
-    // hint: use filter(), map(), and join() methods
-    const sequenceString: string = this.sequences
-      .filter((seq) => seq.checked)
-      .map((seq) => seq.value)
-      .join(',');
+    // hint: use filter(), map(), and join() methods on this.sequences
+    const sequenceString: string = '';
 
     this.dialogRef.close({ item: this.data.item, sequence: sequenceString });
   }

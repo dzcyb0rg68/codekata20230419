@@ -87,16 +87,8 @@ export class Lab3Component implements OnInit {
     ];
     
     // Challenge: join continentData and countryData to tableData: ContinentCountryData[]
-    this.tableData = countryData.map((country) => {
-      const continent = continentData.find((continent) => continent.continentID == country.continentID);
-      return {
-        continentID: country.continentID,
-        continentName: continent.continentName,
-        countryID: country.countryID,
-        countryName: country.countryName,
-        population: country.population,
-      };
-    });
+    // hint: use map() and find() methods on both countryData and continentData
+    
   }
 
   calculateAveragePopulation() {
@@ -120,10 +112,8 @@ export class Lab3Component implements OnInit {
       });
     }
 
-    // Challenge 2: sort the result by average population in descending order
-    this.avgTableData.sort(
-      (a, b) => b.averagePopulation - a.averagePopulation
-    );
+    // Challenge: sort the result by average population in descending order
+    
 
     // Trigger change detection to update the aggregated table
     this.changeDetector.detectChanges();

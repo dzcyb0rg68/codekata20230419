@@ -84,12 +84,12 @@ export class Lab2Component {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const index = this.tableData.findIndex(
-          (row) => row.item === result.item
-        );
-        if (index > -1) {
-          this.tableData[index] = result;
-        }
+        // console.log('data after editing: ', result);
+
+        // Challenge: replace the original object with the new object
+        
+
+        // Update the ag-grid table with updated data
         this.gridApi.setRowData(this.tableData);
       }
     });

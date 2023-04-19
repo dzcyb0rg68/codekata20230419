@@ -20,7 +20,11 @@
 </div>
 <div class="m-5">
   Country:
-  <select class="form-select" [(ngModel)]="selectedCountry" name="country">
+  <select 
+    class="form-select" 
+    [(ngModel)]="selectedCountry" 
+    name="country"
+  >
     <option value="">- Select a Country -</option>
     <option
       *ngFor="let country of filteredCountryOptions"
